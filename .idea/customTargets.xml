@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CLionExternalBuildManager">
+    <target id="2adb453e-131f-4912-8dc1-6ff6ba7d9fdc" name="xmake" defaultType="TOOL">
+      <configuration id="f864b869-9fad-46cc-b1fa-017eefa55e7f" name="xmake" toolchainName="clang-cl">
+        <build type="TOOL">
+          <tool actionId="Tool_External Tools_xmake compile" />
+        </build>
+        <clean type="TOOL">
+          <tool actionId="Tool_External Tools_xmake clean" />
+        </clean>
+      </configuration>
+    </target>
+    <target id="259541e2-8528-41fc-9519-fd27d148322c" name="xmake test" defaultType="TOOL">
+      <configuration id="8d3c461b-84b7-4bc9-9e0a-e5adab446feb" name="xmake test" toolchainName="clang-cl">
+        <build type="TOOL">
+          <tool actionId="Tool_External Tools_xmake compile test-project" />
+        </build>
+        <clean type="TOOL">
+          <tool actionId="Tool_External Tools_xmake clean" />
+        </clean>
+      </configuration>
+    </target>
+    <target id="b645f247-a9ba-44a3-8acd-d6f9a1554f8a" name="xmake benchmark" defaultType="TOOL">
+      <configuration id="c89f405b-83fc-448b-ada9-189726a2d93d" name="xmake benchmark" toolchainName="clang-cl">
+        <build type="TOOL">
+          <tool actionId="Tool_External Tools_xmake compile benchmark-project" />
+        </build>
+        <clean type="TOOL">
+          <tool actionId="Tool_External Tools_xmake clean" />
+        </clean>
+      </configuration>
+    </target>
+  </component>
+</project>

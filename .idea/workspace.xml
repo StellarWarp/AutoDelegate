@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" ENABLED="true" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="update ignore">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-08-26_11_20_[Changes]/benchmark_fig.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-08-26_11_20_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_2024-08-26_11_20__Changes_.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/benchmark_fig.png" beforeDir="false" afterPath="$PROJECT_DIR$/benchmark_fig.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/benchmark/auto_delegate_bench_mark.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/benchmark/auto_delegate_bench_mark.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/benchmark/benchmark.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/benchmark/benchmark.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/samples/sample.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/samples/sample.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/test_function.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/test_function.cpp" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="CompDBLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="Delegate" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value="Delegate" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$" value="RE_IMPORT" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="PUSH_TAGS">
+      <GitPushTagMode>
+        <option name="argument" value="--tags" />
+        <option name="title" value="All" />
+      </GitPushTagMode>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
+    <option name="ROOT_SYNC" value="SYNC" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;StellarWarp&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/StellarWarp/AutoDelegate.git&quot;,
+    &quot;accountId&quot;: &quot;63bd8105-4134-44c9-a0ba-53c513065584&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/src/benchmark/auto_delegate_bench_mark.cpp" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/delegate/multicast_delegate.h" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/delegate/multicast_function.h" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/reference_safe_delegate/reference_safe_delegate.h" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/src/test/test_multicast_function.cpp" root0="SKIP_INSPECTION" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2024" />
+    <option name="minorVersion" value="1.5" />
+    <option name="productBranch" value="Classic" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2kizgbI6Wm4FmN9QF0q5RJWirF2" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "C/C++ File.test.cpp.executor": "Run",
+    "Custom Build Application.benchmark | debug.executor": "Debug",
+    "Custom Build Application.benchmark | release.executor": "Run",
+    "Custom Build Application.test | debug.executor": "Debug",
+    "Custom Build Application.test | release.executor": "Run",
+    "Custom Build Application.xmake | debug.executor": "Run",
+    "Custom Build Application.xmake | release.executor": "Run",
+    "Python.benchmark_display.executor": "Run",
+    "Python.gitsubtree_util.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "cf.advertisement.text.has.clang-format": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/Users/Estelle/source/repos/InlineReflect",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C/C++",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Estelle\source\repos\Delegate\src\benchmark" />
+      <recent name="C:\Users\Estelle\source\repos\Delegate\src\test" />
+      <recent name="C:\Users\Estelle\source\repos\Delegate\src\auto_reference" />
+      <recent name="C:\Users\Estelle\source\repos\Delegate\src" />
+      <recent name="C:\Users\Estelle\source\repos\Delegate\src\delegate" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Custom Build Application.benchmark | release">
+    <configuration name="benchmark | debug" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--benchmark_repetitions=10" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake" CONFIG_NAME="xmake" RUN_PATH="$PROJECT_DIR$/build/windows/x64/debug/DelegateBenchmark.exe">
+      <envs>
+        <env name="CONSOLE_WIDTH" value=" 200" />
+      </envs>
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting debug" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="benchmark | debug" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--benchmark_repetitions=10" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake" CONFIG_NAME="xmake" RUN_PATH="$PROJECT_DIR$/build/windows/x64/debug/DelegateBenchmark.exe">
+      <envs>
+        <env name="CONSOLE_WIDTH" value=" 200" />
+      </envs>
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting debug" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="benchmark | debug" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--benchmark_repetitions=10" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake" CONFIG_NAME="xmake" RUN_PATH="$PROJECT_DIR$/build/windows/x64/debug/DelegateBenchmark.exe">
+      <envs>
+        <env name="CONSOLE_WIDTH" value=" 200" />
+      </envs>
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting debug" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="benchmark | release" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--benchmark_repetitions=5" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake benchmark" CONFIG_NAME="xmake benchmark" RUN_PATH="$PROJECT_DIR$/build/windows/x64/release/DelegateBenchmark.exe">
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting release" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="benchmark | release" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--benchmark_repetitions=5" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake benchmark" CONFIG_NAME="xmake benchmark" RUN_PATH="$PROJECT_DIR$/build/windows/x64/release/DelegateBenchmark.exe">
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting release" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="benchmark | release" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--benchmark_repetitions=5" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake benchmark" CONFIG_NAME="xmake benchmark" RUN_PATH="$PROJECT_DIR$/build/windows/x64/release/DelegateBenchmark.exe">
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting release" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test | debug" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--gtest_break_on_failure" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake test" CONFIG_NAME="xmake test" RUN_PATH="$PROJECT_DIR$/build/windows/x64/debug/DelegateTest.exe">
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting debug" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test | debug" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--gtest_break_on_failure" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake test" CONFIG_NAME="xmake test" RUN_PATH="$PROJECT_DIR$/build/windows/x64/debug/DelegateTest.exe">
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting debug" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test | debug" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--gtest_break_on_failure" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake test" CONFIG_NAME="xmake test" RUN_PATH="$PROJECT_DIR$/build/windows/x64/debug/DelegateTest.exe">
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting debug" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test | release" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--gtest_break_on_failure" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake test" CONFIG_NAME="xmake test" RUN_PATH="$PROJECT_DIR$/build/windows/x64/release/DelegateTest.exe">
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting release" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test | release" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake test" CONFIG_NAME="xmake test" RUN_PATH="$PROJECT_DIR$/build/windows/x64/release/DelegateTest.exe">
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting release" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="test | release" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Delegate" TARGET_NAME="xmake test" CONFIG_NAME="xmake test" RUN_PATH="$PROJECT_DIR$/build/windows/x64/release/DelegateTest.exe">
+      <method v="2">
+        <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting release" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="benchmark_display" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Delegate" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/benchmark_display.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="benchmark_display" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Delegate" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/benchmark_display.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="benchmark_display" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Delegate" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/benchmark_display.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gitsubtree_util" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Delegate" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gitsubtree_util.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gitsubtree_util" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Delegate" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gitsubtree_util.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="gitsubtree_util" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Delegate" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/gitsubtree_util.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Custom Build Application.benchmark | debug" />
+      <item itemvalue="Custom Build Application.benchmark | release" />
+      <item itemvalue="Custom Build Application.test | debug" />
+      <item itemvalue="Custom Build Application.test | release" />
+      <item itemvalue="Python.gitsubtree_util" />
+      <item itemvalue="Python.benchmark_display" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.benchmark_display" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\Estelle\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="" />
+      <created>1723781297765</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723781297765</updated>
+      <workItem from="1723781300219" duration="11631000" />
+      <workItem from="1723800798205" duration="15519000" />
+      <workItem from="1724119997819" duration="1015000" />
+      <workItem from="1724245059423" duration="93000" />
+      <workItem from="1724245377435" duration="28559000" />
+      <workItem from="1724374379456" duration="5847000" />
+      <workItem from="1724384441668" duration="10397000" />
+      <workItem from="1724406136979" duration="8548000" />
+      <workItem from="1724466903026" duration="60070000" />
+      <workItem from="1724591254407" duration="93000" />
+      <workItem from="1724591421524" duration="32000" />
+      <workItem from="1724591540284" duration="46000" />
+      <workItem from="1724591601390" duration="218000" />
+      <workItem from="1724591870895" duration="643000" />
+      <workItem from="1724642386385" duration="23042000" />
+      <workItem from="1724681304302" duration="21946000" />
+      <workItem from="1724749521011" duration="2410000" />
+      <workItem from="1724751976799" duration="8171000" />
+      <workItem from="1724769312907" duration="3935000" />
+      <workItem from="1724830015981" duration="10994000" />
+      <workItem from="1724853450665" duration="2210000" />
+      <workItem from="1724858932974" duration="662000" />
+      <workItem from="1724861182262" duration="4028000" />
+      <workItem from="1724893831475" duration="6439000" />
+      <workItem from="1724902948922" duration="8174000" />
+      <workItem from="1725341653074" duration="1470000" />
+      <workItem from="1725350191705" duration="2301000" />
+      <workItem from="1725436381834" duration="2031000" />
+    </task>
+    <task id="LOCAL-00001" summary="benchmark">
+      <option name="closed" value="true" />
+      <created>1724245073577</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1724245073577</updated>
+    </task>
+    <task id="LOCAL-00002" summary="benchmark &amp; updates">
+      <option name="closed" value="true" />
+      <created>1724293716619</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1724293716619</updated>
+    </task>
+    <task id="LOCAL-00003" summary="init">
+      <option name="closed" value="true" />
+      <created>1724299009302</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1724299009302</updated>
+    </task>
+    <task id="LOCAL-00004" summary="file move">
+      <option name="closed" value="true" />
+      <created>1724302674165</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1724302674165</updated>
+    </task>
+    <task id="LOCAL-00005" summary="namespace and formating">
+      <option name="closed" value="true" />
+      <created>1724312897055</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1724312897055</updated>
+    </task>
+    <task id="LOCAL-00006" summary="ignore update">
+      <option name="closed" value="true" />
+      <created>1724404617441</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1724404617441</updated>
+    </task>
+    <task id="LOCAL-00007" summary="benchmarks">
+      <option name="closed" value="true" />
+      <created>1724564538112</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1724564538112</updated>
+    </task>
+    <task id="LOCAL-00008" summary="benchmarks">
+      <option name="closed" value="true" />
+      <created>1724574822320</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1724574822320</updated>
+    </task>
+    <task id="LOCAL-00009" summary="weak multicast benchmarks">
+      <option name="closed" value="true" />
+      <created>1724670411191</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1724670411191</updated>
+    </task>
+    <task id="LOCAL-00010" summary="multicast function">
+      <option name="closed" value="true" />
+      <created>1724896244487</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1724896244487</updated>
+    </task>
+    <task id="LOCAL-00011" summary="benchmark">
+      <option name="closed" value="true" />
+      <created>1724900547941</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1724900547941</updated>
+    </task>
+    <task id="LOCAL-00012" summary="update test">
+      <option name="closed" value="true" />
+      <created>1724920820654</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1724920820654</updated>
+    </task>
+    <task id="LOCAL-00013" summary="update ignore">
+      <option name="closed" value="true" />
+      <created>1724921034804</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1724921034804</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="reference_safe_delegate" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/src/delegate" />
+      <path value="$PROJECT_DIR$/temp" />
+    </ignored-roots>
+    <MESSAGE value="benchmark &amp; updates" />
+    <MESSAGE value="init" />
+    <MESSAGE value="file move" />
+    <MESSAGE value="namespace and formating" />
+    <MESSAGE value="ignore update" />
+    <MESSAGE value="benchmarks" />
+    <MESSAGE value="weak multicast benchmarks" />
+    <MESSAGE value="multicast function" />
+    <MESSAGE value="benchmark" />
+    <MESSAGE value="update test" />
+    <MESSAGE value="update ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="update ignore" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

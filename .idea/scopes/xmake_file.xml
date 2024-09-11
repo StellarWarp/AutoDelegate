@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="xmake file" pattern="file:xmake.lua||file:.xmake/*/*/xmake.conf" />
+</component>

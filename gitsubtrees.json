@@ -1,0 +1,22 @@
+{
+  "subtrees": {
+    "delegate": {
+      "prefix": "src/delegate",
+      "repo_urls": [],
+      "branch": "delegate",
+      "this_repo": true
+    },
+    "auto_reference": {
+      "prefix": "src/auto_reference",
+      "repo_urls": [],
+      "branch": "auto_reference",
+      "this_repo": true
+    },
+    "reference_safe_delegate": {
+      "prefix": "src/reference_safe_delegate",
+      "repo_urls": [],
+      "branch": "reference_safe_delegate",
+      "this_repo": true
+    }
+  }
+}
