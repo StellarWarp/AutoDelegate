@@ -92,6 +92,8 @@ TEST(function, test_function)
     };
     ASSERT_EQ(f4(123), exam_sum_2 + 123);
 
+    auto& target_type = f4.target_type();
+
 
     function<uint64_t(uint64_t)> f5 = [=] (uint64_t a) mutable
     {
