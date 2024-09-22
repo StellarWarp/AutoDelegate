@@ -12,8 +12,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="[refactor] adding anonymous namespace">
+    <list default="true" id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="[fix] name conflict&#10;[test] adding tag ptr test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/delegate/multicast_function.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/delegate/multicast_function.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -113,7 +114,7 @@
     &quot;C/C++ File.test.cpp.executor&quot;: &quot;Run&quot;,
     &quot;Custom Build Application.benchmark | debug.executor&quot;: &quot;Debug&quot;,
     &quot;Custom Build Application.benchmark | release.executor&quot;: &quot;Run&quot;,
-    &quot;Custom Build Application.test | debug.executor&quot;: &quot;Run&quot;,
+    &quot;Custom Build Application.test | debug.executor&quot;: &quot;Debug&quot;,
     &quot;Custom Build Application.test | release.executor&quot;: &quot;Run&quot;,
     &quot;Custom Build Application.xmake | debug.executor&quot;: &quot;Run&quot;,
     &quot;Custom Build Application.xmake | release.executor&quot;: &quot;Run&quot;,
@@ -369,8 +370,8 @@
       <item itemvalue="Custom Build Application.benchmark | release" />
       <item itemvalue="Custom Build Application.test | debug" />
       <item itemvalue="Custom Build Application.test | release" />
-      <item itemvalue="Python.benchmark_display" />
       <item itemvalue="Python.gitsubtree_util" />
+      <item itemvalue="Python.benchmark_display" />
     </list>
     <recent_temporary>
       <list>
@@ -429,6 +430,8 @@
       <workItem from="1726969923795" duration="26000" />
       <workItem from="1726970040109" duration="11000" />
       <workItem from="1726993855125" duration="9000" />
+      <workItem from="1727007766815" duration="5504000" />
+      <workItem from="1727014088380" duration="608000" />
     </task>
     <task id="LOCAL-00001" summary="benchmark">
       <option name="closed" value="true" />
@@ -558,7 +561,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726884216738</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="[refactor] namespace">
+      <option name="closed" value="true" />
+      <created>1727009152509</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1727009152509</updated>
+    </task>
+    <task id="LOCAL-00018" summary="[fix] name conflict&#10;[test] adding tag ptr test">
+      <option name="closed" value="true" />
+      <created>1727010176490</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1727010176490</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -615,7 +634,9 @@
     <MESSAGE value="support function rtti" />
     <MESSAGE value="[fix] support for noexcept static function" />
     <MESSAGE value="[refactor] adding anonymous namespace" />
-    <option name="LAST_COMMIT_MESSAGE" value="[refactor] adding anonymous namespace" />
+    <MESSAGE value="[refactor] namespace" />
+    <MESSAGE value="[fix] name conflict&#10;[test] adding tag ptr test" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] name conflict&#10;[test] adding tag ptr test" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
