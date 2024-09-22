@@ -22,7 +22,7 @@ void delegate_sample()
     MyClass obj;
 
     // bind methods - constructor
-    delegate<int(int, int)> d(&obj, tag<&MyClass::Func>());
+    delegate<int(int, int)> d(&obj, func_tag<&MyClass::Func>());
 
     // bind/rebind methods
     d.bind<&MyClass::Func>(&obj);

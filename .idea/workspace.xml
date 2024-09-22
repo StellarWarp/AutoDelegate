@@ -12,7 +12,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="support function rtti">
+    <list default="true" id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="[refactor] adding anonymous namespace">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +133,7 @@
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CLionExternalConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
     &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -369,8 +369,8 @@
       <item itemvalue="Custom Build Application.benchmark | release" />
       <item itemvalue="Custom Build Application.test | debug" />
       <item itemvalue="Custom Build Application.test | release" />
-      <item itemvalue="Python.gitsubtree_util" />
       <item itemvalue="Python.benchmark_display" />
+      <item itemvalue="Python.gitsubtree_util" />
     </list>
     <recent_temporary>
       <list>
@@ -424,7 +424,11 @@
       <workItem from="1726406644432" duration="2410000" />
       <workItem from="1726653564988" duration="5172000" />
       <workItem from="1726806397302" duration="17000" />
-      <workItem from="1726824236752" duration="604000" />
+      <workItem from="1726824236752" duration="1484000" />
+      <workItem from="1726883275048" duration="2287000" />
+      <workItem from="1726969923795" duration="26000" />
+      <workItem from="1726970040109" duration="11000" />
+      <workItem from="1726993855125" duration="9000" />
     </task>
     <task id="LOCAL-00001" summary="benchmark">
       <option name="closed" value="true" />
@@ -538,7 +542,23 @@
       <option name="project" value="LOCAL" />
       <updated>1726660655899</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="[fix] support for noexcept static function">
+      <option name="closed" value="true" />
+      <created>1726843249792</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1726843249792</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[refactor] adding anonymous namespace">
+      <option name="closed" value="true" />
+      <created>1726884216738</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1726884216738</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -593,7 +613,9 @@
     <MESSAGE value="update test" />
     <MESSAGE value="update ignore" />
     <MESSAGE value="support function rtti" />
-    <option name="LAST_COMMIT_MESSAGE" value="support function rtti" />
+    <MESSAGE value="[fix] support for noexcept static function" />
+    <MESSAGE value="[refactor] adding anonymous namespace" />
+    <option name="LAST_COMMIT_MESSAGE" value="[refactor] adding anonymous namespace" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
