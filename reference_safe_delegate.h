@@ -16,8 +16,8 @@ namespace auto_delegate
 {
     using namespace auto_reference;
 
-    template<typename Func>
-    using auto_delegate = delegate<Func, weak_reference<generic_ref_reflector, generic_ref_reflector>>;
+//    template<typename Func>
+//    using auto_delegate = delegate<Func, weak_reference<generic_ref_reflector, generic_ref_reflector>>;
     template<typename Func>
     using weak_delegate = delegate<Func, std::weak_ptr<void>>;
     template<typename Func>
