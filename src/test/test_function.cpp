@@ -112,10 +112,54 @@ TEST(function, test_function)
     ASSERT_EQ(f4(123), exam_sum_2 + 123);
 }
 
-TEST(function, teststd_function)
+template<int IDENT>
+int tmp_func(int a, int b)
 {
+    return a + b + IDENT;
+}
 
-    std::function<int(int,int)> f = [](int a, int b) { return a + b; };
-    ASSERT_EQ(f(1, 2), 3);
+template<typename T>
+constexpr void* move_constructor(void* dest, void* src)
+{
+    return (T*) new(dest) T(std::move(*(T*) src));
+}
+
+template<typename T>
+constexpr void* copy_constructor(void* dest, const void* src)
+{
+    return (T*) new(dest) T(*(T*) src);
+}
+
+template<typename T>
+constexpr void destructor(void* addr)
+{
+    ((T*) addr)->~T();
+}
+
+TEST(function, test_tag_function_ptr)
+{
+    using namespace auto_delegate;
+
+    {
+        function<int(int, int)> f1 = [](int a, int b) { return a + b; };
+        ASSERT_EQ(f1(1, 2), 3);
+        function<int(int, int)> f2 = [](int a, int b) { return a + b; };
+        ASSERT_EQ(f2(1, 2), 3);
+        function<int(int, int)> f3 = [](int a, int b) { return a + b; };
+        ASSERT_EQ(f3(1, 2), 3);
+        function<int(int, int)> f4 = [](int a, int b) { return a + b; };
+        ASSERT_EQ(f4(1, 2), 3);
+        function<int(int, int)> f5 = [](int a, int b) { return a + b; };
+        ASSERT_EQ(f5(1, 2), 3);
+        function<int(int, int)> f6 = tmp_func<114514>;
+        ASSERT_EQ(f6(1, 2), 3 + 114514);
+        function<int(int, int)> f7 = tmp_func<1234>;
+        ASSERT_EQ(f7(1, 2), 3 + 1234);
+    }
+
+    function<void*(void*, void*)> f1 = move_constructor<int>;
+    function<void*(void*, const void*)> f2 = copy_constructor<float>;
+    function<void(void*)> f3 = destructor<int>;
+
 
 }
