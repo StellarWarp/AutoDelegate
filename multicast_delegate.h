@@ -489,6 +489,16 @@ namespace auto_delegate
                 result_proc(invoke_single(obj, mem_fn, std::forward<Args>(args)...));
             }
         }
+        template<typename Callable>
+        void for_each(Callable&& func)
+        {
+            for (auto&& [obj, mem_fn, _]: objects)
+            {
+                func([&](Args... args) {
+                    return invoke_single(obj, mem_fn, std::forward<decltype(args)>(args)...);
+                });
+            }
+        }
 
     private:
         template<typename Invoker>
