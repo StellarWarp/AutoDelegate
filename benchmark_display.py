@@ -6,7 +6,11 @@ import sys
 
 # 运行Google Benchmark并捕获输出
 def run_benchmark(executable, options):
-    command = f"{executable} {options}"
+    if sys.platform.startswith('linux'):
+        command = f"{executable} {options}"
+    else:
+        command = f"{executable} {options}"
+    
     process = subprocess.run('xmake f -m release -a x64 -y', shell=True, text=True)
     print(process.stdout)
     process = subprocess.run('xmake build DelegateBenchmark', shell=True, text=True)
@@ -33,7 +37,7 @@ def main():
         executable = os.getcwd() + r"/build/windows/x64/release/DelegateBenchmark.exe"
     elif sys.platform.startswith('linux'):
         executable = os.getcwd() + r"/build/linux/x64/release/DelegateBenchmark"
-    options = f"--benchmark_repetitions=16 --benchmark_format=json --benchmark_out={benchmark_file}"
+    options = f"--benchmark_repetitions=128 --benchmark_format=json --benchmark_out={benchmark_file}"
 
     #check exist for executable
     if not os.path.exists(executable):
