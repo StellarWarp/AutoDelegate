@@ -115,14 +115,14 @@ static constexpr size_t class_count = 1 << 2;
 static constexpr size_t object_count = 1 << 12;
 static constexpr size_t per_class_count = object_count / class_count;
 
-const auto min_warm_up = 1 << 15;
+const auto min_warm_up = 1 << 0;
 #ifdef NDEBUG
-const uint64_t invoke_count = 1 << 10;
+const uint64_t invoke_count = 1 << 12;
 #else
 const uint64_t invoke_count = 1 << 2;
 #endif
 
-#define BENCHMARK_ARGS ->Iterations(invoke_count)->MeasureProcessCPUTime()->Unit(benchmark::kMillisecond)->MinWarmUpTime(min_warm_up)
+#define BENCHMARK_ARGS ->Iterations(invoke_count)->MeasureProcessCPUTime()->Unit(benchmark::kMillisecond)
 
 
 template<auto>
@@ -453,12 +453,6 @@ BENCHMARK(BM_NoiseTest<0>)BENCHMARK_ARGS;
 BENCHMARK(BM_NoiseTest<1>)BENCHMARK_ARGS;
 BENCHMARK(BM_NoiseTest<2>)BENCHMARK_ARGS;
 BENCHMARK(BM_NoiseTest<3>)BENCHMARK_ARGS;
-BENCHMARK(BM_NoiseTest<4>)BENCHMARK_ARGS;
-BENCHMARK(BM_NoiseTest<5>)BENCHMARK_ARGS;
-BENCHMARK(BM_NoiseTest<6>)BENCHMARK_ARGS;
-BENCHMARK(BM_NoiseTest<7>)BENCHMARK_ARGS;
-BENCHMARK(BM_NoiseTest<8>)BENCHMARK_ARGS;
-BENCHMARK(BM_NoiseTest<9>)BENCHMARK_ARGS;
 
 
 
@@ -484,7 +478,7 @@ static void BM_StdFunction(benchmark::State& state)
     }
 }
 
-
+template<size_t>
 static void BM_MyFunction(benchmark::State& state)
 {
     std::vector<function<void(ARG_LIST), 16>> funcs;
@@ -507,7 +501,7 @@ static void BM_MyFunction(benchmark::State& state)
     }
 }
 
-
+template<size_t>
 static void BM_FunctionV2(benchmark::State& state)
 {
     std::vector<function_v2::function<void(ARG_LIST), 16>> funcs;
@@ -530,8 +524,19 @@ static void BM_FunctionV2(benchmark::State& state)
     }
 }
 
-BENCHMARK(BM_MyFunction)BENCHMARK_ARGS;
-BENCHMARK(BM_FunctionV2)BENCHMARK_ARGS;
+BENCHMARK(BM_MyFunction<0>)BENCHMARK_ARGS;
+BENCHMARK(BM_MyFunction<1>)BENCHMARK_ARGS;
+BENCHMARK(BM_MyFunction<2>)BENCHMARK_ARGS;
+BENCHMARK(BM_MyFunction<3>)BENCHMARK_ARGS;
+
+
+BENCHMARK(BM_FunctionV2<0>)BENCHMARK_ARGS;
+BENCHMARK(BM_FunctionV2<1>)BENCHMARK_ARGS;
+BENCHMARK(BM_FunctionV2<2>)BENCHMARK_ARGS;
+BENCHMARK(BM_FunctionV2<3>)BENCHMARK_ARGS;
+
+
+
 BENCHMARK(BM_StdFunction)BENCHMARK_ARGS;
 
 
