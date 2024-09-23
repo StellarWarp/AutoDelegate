@@ -85,20 +85,20 @@ namespace auto_delegate::function_v1
         };
     }
 
-    template<typename FuncT>
+    template<typename FuncT, size_t SOB = 48>
     struct function;
 
     template<typename Callable>
     function(Callable&&) -> function<typename details::function_traits<std::decay_t<Callable>>::decay_function_type>;
 
-    template<typename Ret, typename... Args>
-    class function<Ret(Args...)>
+    template<typename Ret, typename... Args, size_t SOB>
+    class function<Ret(Args...), SOB>
     {
     protected:
         using invoker_t = Ret (*)(void*, Args...);
         using manager_t = const void* (*)(void*, void*, func_storage_op);
 
-        alignas(std::max_align_t) void* data[6];
+        alignas(std::max_align_t) void* data[SOB / sizeof(void*)];
         invoker_t invoker;
         manager_t manager;
         static constexpr size_t inline_storage_size = sizeof(data);
@@ -390,20 +390,20 @@ namespace auto_delegate::function_v2
         };
     }
 
-    template<typename FuncT>
+    template<typename FuncT, size_t SOB = 48>
     struct function;
 
     template<typename Callable>
     function(Callable&&) -> function<typename details::function_traits<std::decay_t<Callable>>::decay_function_type>;
 
-    template<typename Ret, typename... Args>
-    class function<Ret(Args...)>
+    template<typename Ret, typename... Args, size_t SOB>
+    class function<Ret(Args...), SOB>
     {
     protected:
         using invoker_t = functor_invoker_traits<Ret, Args...>::invoker_t;
         using manager_t = const void* (*)(void*, void*, func_storage_op);
 
-        alignas(std::max_align_t) void* data[6];
+        alignas(std::max_align_t) void* data[SOB / sizeof(void*)];
         invoker_t invoker;
         manager_t manager;
         static constexpr size_t inline_storage_size = sizeof(data);
