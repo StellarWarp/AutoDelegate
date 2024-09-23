@@ -6,6 +6,7 @@
 #include "function.h"
 #include "multicast_delegate.h"
 #include <vector>
+#include <array>
 #include <optional>
 
 #ifdef no_unique_address
