@@ -117,7 +117,7 @@ static constexpr size_t per_class_count = object_count / class_count;
 
 const auto min_warm_up = 1 << 10;
 #ifdef NDEBUG
-const uint64_t invoke_count = 1 << 16;
+const uint64_t invoke_count = 1 << 12;
 #else
 const uint64_t invoke_count = 1 << 2;
 #endif
@@ -333,7 +333,7 @@ static void BM_Direct_FunctionPointer(benchmark::State& state)
                       });
     }
 }
-// BENCHMARK(BM_Direct_FunctionPointer)BENCHMARK_ARGS;
+BENCHMARK(BM_Direct_FunctionPointer)BENCHMARK_ARGS;
 
 
 static void BM_FunctionPointer(benchmark::State& state)

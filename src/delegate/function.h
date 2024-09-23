@@ -4,6 +4,9 @@
 #include <cstring>
 #include <assert.h>
 #include "function_traits.h"
+#include <typeinfo>
+#include <cstdint>
+#include <cstddef>
 
 namespace auto_delegate::function_v1
 {
