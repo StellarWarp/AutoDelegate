@@ -33,7 +33,7 @@ def main():
         executable = os.getcwd() + r"/build/windows/x64/release/DelegateBenchmark.exe"
     elif sys.platform.startswith('linux'):
         executable = os.getcwd() + r"/build/linux/x64/release/DelegateBenchmark"
-    options = f"--benchmark_repetitions=64 --benchmark_format=json --benchmark_out={benchmark_file}"
+    options = f"--benchmark_repetitions=16 --benchmark_format=json --benchmark_out={benchmark_file}"
 
     #check exist for executable
     if not os.path.exists(executable):

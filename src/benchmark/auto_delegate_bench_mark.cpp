@@ -119,7 +119,7 @@ static constexpr size_t per_class_count = object_count / class_count;
 
 const auto min_warm_up = 1 << 10;
 #ifdef NDEBUG
-const uint64_t invoke_count = 1 << 14;
+const uint64_t invoke_count = 1 << 16;
 #else
 const uint64_t invoke_count = 1 << 2;
 #endif
@@ -480,6 +480,30 @@ static void BM_MyFunction(benchmark::State& state)
 
 BENCHMARK(BM_MyFunction)BENCHMARK_ARGS;
 
+static void BM_FunctionV2(benchmark::State& state)
+{
+    std::vector<function_v2::function<void(ARG_LIST)>> funcs;
+    funcs.reserve(object_count);
+
+    ForEachObject([&]<size_t I>(auto&& o, index_tag<I>)
+                  {
+                      funcs.emplace_back([o](ARG_LIST)
+                                         {
+                                             o->function(ARG_LIST_FORWARD);
+                                         });
+                  });
+
+    for (auto _: state)
+    {
+        for (auto& f: funcs)
+        {
+            f(INVOKE_PARAMS);
+        }
+    }
+}
+
+BENCHMARK(BM_FunctionV2)BENCHMARK_ARGS;
+
 
 static void BM_DefaultMulticast_InvokeAction(benchmark::State& state)
 {
@@ -497,7 +521,7 @@ static void BM_DefaultMulticast_InvokeAction(benchmark::State& state)
     );
 }
 
-BENCHMARK(BM_DefaultMulticast_InvokeAction)BENCHMARK_ARGS;
+//BENCHMARK(BM_DefaultMulticast_InvokeAction)BENCHMARK_ARGS;
 
 
 static void BM_DefaultMulticast_InvokeFunction(benchmark::State& state)
@@ -519,7 +543,7 @@ static void BM_DefaultMulticast_InvokeFunction(benchmark::State& state)
     );
 }
 
-BENCHMARK(BM_DefaultMulticast_InvokeFunction)BENCHMARK_ARGS;
+//BENCHMARK(BM_DefaultMulticast_InvokeFunction)BENCHMARK_ARGS;
 
 
 static void BM_MulticastFunc_InvokeAction(benchmark::State& state)
@@ -538,7 +562,7 @@ static void BM_MulticastFunc_InvokeAction(benchmark::State& state)
     );
 }
 
-BENCHMARK(BM_MulticastFunc_InvokeAction)BENCHMARK_ARGS;
+//BENCHMARK(BM_MulticastFunc_InvokeAction)BENCHMARK_ARGS;
 
 
 static void BM_MulticastFunc_InvokeFunction(benchmark::State& state)
@@ -560,7 +584,7 @@ static void BM_MulticastFunc_InvokeFunction(benchmark::State& state)
     );
 }
 
-BENCHMARK(BM_MulticastFunc_InvokeFunction)BENCHMARK_ARGS;
+//BENCHMARK(BM_MulticastFunc_InvokeFunction)BENCHMARK_ARGS;
 
 static void BM_DefaultMulticast_InvokeVirtualAction(benchmark::State& state)
 {

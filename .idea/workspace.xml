@@ -12,10 +12,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="[fix] name conflict&#10;[test] adding tag ptr test">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/delegate/multicast_function.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/delegate/multicast_function.h" afterDir="false" />
-    </list>
+    <list default="true" id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="[features] adding for_each for multicast_delegate" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -431,7 +428,7 @@
       <workItem from="1726970040109" duration="11000" />
       <workItem from="1726993855125" duration="9000" />
       <workItem from="1727007766815" duration="5504000" />
-      <workItem from="1727014088380" duration="608000" />
+      <workItem from="1727014088380" duration="1736000" />
     </task>
     <task id="LOCAL-00001" summary="benchmark">
       <option name="closed" value="true" />
@@ -577,7 +574,23 @@
       <option name="project" value="LOCAL" />
       <updated>1727010176490</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="[features] adding for_each for multicast_function">
+      <option name="closed" value="true" />
+      <created>1727014839494</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1727014839494</updated>
+    </task>
+    <task id="LOCAL-00020" summary="[features] adding for_each for multicast_delegate">
+      <option name="closed" value="true" />
+      <created>1727015646437</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1727015646437</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -636,7 +649,9 @@
     <MESSAGE value="[refactor] adding anonymous namespace" />
     <MESSAGE value="[refactor] namespace" />
     <MESSAGE value="[fix] name conflict&#10;[test] adding tag ptr test" />
-    <option name="LAST_COMMIT_MESSAGE" value="[fix] name conflict&#10;[test] adding tag ptr test" />
+    <MESSAGE value="[features] adding for_each for multicast_function" />
+    <MESSAGE value="[features] adding for_each for multicast_delegate" />
+    <option name="LAST_COMMIT_MESSAGE" value="[features] adding for_each for multicast_delegate" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
