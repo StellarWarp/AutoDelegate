@@ -201,9 +201,9 @@ namespace auto_delegate::function_v1
         operator bool() const { return invoker != nullptr; }
 
 #if __cpp_rtti
-        [[nodiscard]] const type_info& target_type() const noexcept
+        [[nodiscard]] const std::type_info& target_type() const noexcept
         {
-            return *static_cast<const type_info*>(manage(nullptr, nullptr, func_storage_op::st_get_type_info));
+            return *static_cast<const std::type_info*>(manage(nullptr, nullptr, func_storage_op::st_get_type_info));
         }
         template<typename Callable>
         [[nodiscard]] const Callable* target() const noexcept
@@ -280,7 +280,7 @@ namespace auto_delegate::function_v2
         requires (not requires(T t) { t.validate(function_validate_tag{}); })
         struct validator_traits<T>
         {
-            constexpr static nullptr_t validator = nullptr;
+            constexpr static std::nullptr_t validator = nullptr;
             constexpr static bool has_validator = false;
         };
 
@@ -540,9 +540,9 @@ namespace auto_delegate::function_v2
         operator bool() const { return invoker != nullptr; }
 
 #if __cpp_rtti
-        [[nodiscard]] const type_info& target_type() const noexcept
+        [[nodiscard]] const std::type_info& target_type() const noexcept
         {
-            return *static_cast<const type_info*>(manage(nullptr, nullptr, func_storage_op::st_get_type_info));
+            return *static_cast<const std::type_info*>(manage(nullptr, nullptr, func_storage_op::st_get_type_info));
         }
         template<typename Callable>
         [[nodiscard]] const Callable* target() const noexcept
