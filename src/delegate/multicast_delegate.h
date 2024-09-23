@@ -1,7 +1,6 @@
 #pragma once
 
 #include <memory>
-#include <ranges>
 #include <cassert>
 #include <vector>
 #include "delegate.h"
