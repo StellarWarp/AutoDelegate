@@ -5,7 +5,7 @@
 #include <assert.h>
 #include "function_traits.h"
 
-namespace auto_delegate::details
+namespace auto_delegate::function_v1
 {
     namespace
     {
@@ -86,7 +86,7 @@ namespace auto_delegate::details
     struct function;
 
     template<typename Callable>
-    function(Callable&&) -> function<typename function_traits<std::decay_t<Callable>>::decay_function_type>;
+    function(Callable&&) -> function<typename details::function_traits<std::decay_t<Callable>>::decay_function_type>;
 
     template<typename Ret, typename... Args>
     class function<Ret(Args...)>
@@ -147,7 +147,8 @@ namespace auto_delegate::details
             }
         }
 
-        template<typename Callable> requires (not std::same_as<std::decay_t<Callable>, function>)
+        template<typename Callable>
+        requires (not std::same_as<std::decay_t<Callable>, function>)
         function& operator=(Callable&& callable)
         {
             this->~function();
@@ -224,7 +225,346 @@ namespace auto_delegate::details
     };
 }
 
+namespace auto_delegate::function_v2
+{
+    namespace
+    {
+        enum class func_storage_op
+        {
+            st_copy,
+            st_move,
+            st_delete,
+            st_get_type_info
+        };
+
+        enum class func_invoke_op
+        {
+            validate,
+            invoke
+        };
+
+        struct validation_tag{};
+        struct invoke_tag{};
+
+        template<typename Ret, typename... Args>
+        struct functor_invoker_traits
+        {
+            union invoker_ret_no_ret{
+                bool valid;
+                invoker_ret_no_ret(validation_tag, bool valid) : valid(valid) {}
+                invoker_ret_no_ret(){}
+            };
+            union invoker_ret_with_ret{
+                Ret ret;
+                bool valid;
+                invoker_ret_with_ret(validation_tag, bool valid) : valid(valid) {}
+                invoker_ret_with_ret(invoke_tag, Ret&& ret) : ret(std::forward<Ret>(ret)) {}
+                invoker_ret_with_ret(){}
+            };
+            using invoker_ret = std::conditional_t<std::is_void_v<Ret>, invoker_ret_no_ret, invoker_ret_with_ret>;
+
+            using invoker_t = invoker_ret (*)(func_invoke_op, void*,  std::tuple<Args...>*);
+        };
+
+        struct function_validate_tag{};
+        template<typename T>
+        struct validator_traits;
+        template<typename T>
+        requires requires(T t) { t.validate(function_validate_tag{}); }
+        struct validator_traits<T>
+        {
+            constexpr static auto validator = &T::validate;
+            constexpr static bool has_validator = true;
+        };
+        template<typename T>
+        requires (not requires(T t) { t.validate(function_validate_tag{}); })
+        struct validator_traits<T>
+        {
+            constexpr static nullptr_t validator = nullptr;
+            constexpr static bool has_validator = false;
+        };
+
+        template<typename T,
+                typename RTTI_T,
+                auto ValidateMemFunc,
+                typename Ret,
+                typename... Args> requires std::copy_constructible<T> and std::move_constructible<T>
+        struct functor_object_traits
+        {
+            using invoker_ret = typename functor_invoker_traits<Ret, Args...>::invoker_ret;
+            static invoker_ret invoker(func_invoke_op op, void* self, std::tuple<Args...>* args)
+            {
+                T& self_ = *static_cast<T*>(self);
+
+                auto invoke = [&]<size_t... I>(std::index_sequence<I...>){
+                    if constexpr (std::is_void_v<Ret>)
+                    {
+                        self_(std::forward<Args>(std::get<I>(*args))...);
+                        return invoker_ret{};
+                    }
+                    else
+                    {
+                        return invoker_ret{ invoke_tag{}, self_(std::forward<Args>(std::get<I>(*args))...) };
+                    }
+                };
+
+                if constexpr (ValidateMemFunc == nullptr)
+                    return invoke(std::make_index_sequence<sizeof...(Args)>{});
+                else
+                switch (op)
+                {
+                    case func_invoke_op::validate:
+                        return invoker_ret{ validation_tag{}, (self_.*ValidateMemFunc)(function_validate_tag{}) };
+                    case func_invoke_op::invoke:
+                        return invoke(std::make_index_sequence<sizeof...(Args)>{});
+                    default:
+                        assert(false);
+                        return invoker_ret{};
+                }
+            }
+
+            static const void* manager(void* self, void* other, func_storage_op op)
+            {
+                T& self_ = *static_cast<T*>(self);
+                T& other_ = *static_cast<T*>(other);
+                switch (op)
+                {
+                    case func_storage_op::st_copy:
+                        new(self) T((const T&) other_);
+                        break;
+                    case func_storage_op::st_move:
+                        new(self) T(std::move(other_));
+                        break;
+                    case func_storage_op::st_delete:
+                        self_.~T();
+                        break;
+#if __cpp_rtti
+                        case func_storage_op::st_get_type_info:
+                            return &typeid(RTTI_T);
+#endif
+                }
+                return nullptr;
+            }
+
+            static constexpr bool is_trivial =
+                    std::is_trivially_copyable_v<T>
+                    and std::is_trivially_move_constructible_v<T>
+                    and std::is_trivially_destructible_v<T>;
+        };
+
+
+
+
+        template<typename Callable, typename Ret, typename... Args>
+        struct functor_box_wrapper
+        {
+            Callable* callee;
+
+            template<typename Other>
+            explicit functor_box_wrapper(Other&& callee)
+                    : callee(new Callable(std::forward<Other>(callee))) {}
+
+            functor_box_wrapper(const functor_box_wrapper& other)
+                    : callee(new Callable(*other.callee)) {}
+
+            functor_box_wrapper(functor_box_wrapper&& other)
+                    : callee(other.callee) { other.callee = nullptr; }
+
+            ~functor_box_wrapper() { delete callee; }
+
+            Ret operator()(Args... args)
+            {
+                return (*callee)(std::forward<Args>(args)...);
+            }
+
+            [[nodiscard]] bool validate(function_validate_tag) const
+            requires validator_traits<Callable>::has_validator
+            {
+                return callee->validate(function_validate_tag{});
+            }
+
+            const Callable* get() const noexcept { return callee; }
+        };
+    }
+
+    template<typename FuncT>
+    struct function;
+
+    template<typename Callable>
+    function(Callable&&) -> function<typename details::function_traits<std::decay_t<Callable>>::decay_function_type>;
+
+    template<typename Ret, typename... Args>
+    class function<Ret(Args...)>
+    {
+    protected:
+        using invoker_t = functor_invoker_traits<Ret, Args...>::invoker_t;
+        using manager_t = const void* (*)(void*, void*, func_storage_op);
+
+        alignas(std::max_align_t) void* data[6];
+        invoker_t invoker;
+        manager_t manager;
+        static constexpr size_t inline_storage_size = sizeof(data);
+        static constexpr uintptr_t non_trivial_bit_mask = 1<<0;
+        static constexpr uintptr_t validator_bit_mask = 1<<1;
+        static constexpr uintptr_t tag_mask = non_trivial_bit_mask | validator_bit_mask;
+        static constexpr uintptr_t pointer_mask = ~(tag_mask);
+
+        [[nodiscard]] bool non_trivial() const
+        {
+            return uintptr_t(manager) & non_trivial_bit_mask;
+        }
+
+        [[nodiscard]] bool has_validator() const
+        {
+            return uintptr_t(manager) & validator_bit_mask;
+        }
+
+        const void* manage(void* self, void* other, func_storage_op op) const
+        {
+            auto m = manager_t(uintptr_t(manager) & pointer_mask);
+            return m(self, other, op);
+        }
+
+        void set_manager_and_tags(manager_t m, bool trivial, bool has_validator)
+        {
+            uintptr_t& ptr = *(uintptr_t*) &m;
+            assert((ptr & tag_mask) == 0);
+            if (not trivial) ptr |= non_trivial_bit_mask;
+            if (has_validator) ptr |= validator_bit_mask;
+            manager = manager_t(ptr);
+
+        }
+
+    public:
+        template<typename Callable>
+        requires std::same_as<std::invoke_result_t<Callable, Args...>, Ret>
+                 and (not std::same_as<std::decay_t<Callable>, function>)
+                 and std::move_constructible<Callable>
+                 and std::copy_constructible<Callable>
+        function(Callable&& callable)
+        {
+            using callable_t = std::decay_t<Callable>;
+
+            if constexpr (sizeof(callable_t) <= inline_storage_size)
+            {
+                using inline_functor_t = callable_t;
+                constexpr auto validator = validator_traits<inline_functor_t>::validator;
+                constexpr bool has_validator = validator_traits<inline_functor_t>::has_validator;
+                using traits = functor_object_traits<
+                        inline_functor_t,
+                        callable_t,
+                        validator,
+                        Ret, Args...>;
+                ::new(data) inline_functor_t(std::forward<Callable>(callable));
+                invoker = traits::invoker;
+                set_manager_and_tags(traits::manager, traits::is_trivial, has_validator);
+            } else
+            {
+                using inline_functor_t = functor_box_wrapper<callable_t, Ret, Args...>;
+                constexpr auto validator = validator_traits<inline_functor_t>::validator;
+                constexpr bool has_validator = validator_traits<inline_functor_t>::has_validator;
+                using traits = functor_object_traits<
+                        inline_functor_t,
+                        callable_t,
+                        validator,
+                        Ret, Args...>;
+                ::new(data) inline_functor_t(std::forward<Callable>(callable));
+                invoker = traits::invoker;
+                set_manager_and_tags(traits::manager, false, has_validator);
+            }
+        }
+
+        template<typename Callable>
+        requires (not std::same_as<std::decay_t<Callable>, function>)
+        function& operator=(Callable&& callable)
+        {
+            this->~function();
+            new(this) function(std::forward<Callable>(callable));
+            return *this;
+        }
+
+        function() : invoker(nullptr), manager(nullptr) {}
+
+        function(const function& other) : invoker(other.invoker), manager(other.manager)
+        {
+            if (non_trivial()) manage(data, (void*) other.data, func_storage_op::st_copy);
+            else std::memcpy(data, other.data, sizeof(data));
+        }
+
+        function(function&& other) noexcept: invoker(other.invoker), manager(other.manager)
+        {
+            if (non_trivial()) manage(data, other.data, func_storage_op::st_move);
+            else std::memcpy(data, other.data, sizeof(data));
+            other.invoker = nullptr;
+            other.manager = nullptr;
+        }
+
+        ~function()
+        {
+            if (non_trivial()) manage(data, nullptr, func_storage_op::st_delete);
+        }
+
+        function& operator=(const function& other) noexcept
+        {
+            if (this == &other) return *this;
+            this->~function();
+            new(this) function(other);
+            return *this;
+        }
+
+        function& operator=(function&& other) noexcept
+        {
+            if (this == &other) return *this;
+            this->~function();
+            new(this) function(std::move(other));
+            return *this;
+        }
+
+        [[nodiscard]] bool validate() const
+        {
+            if(has_validator())
+                return invoker(func_invoke_op::validate, (void*) data, nullptr).valid;
+            else
+                return true;
+        }
+
+        Ret operator()(Args... args) const
+        {
+            std::tuple<Args...> args_tuple{ std::forward<Args>(args)... };
+            if constexpr (std::is_void_v<Ret>)
+                invoker(func_invoke_op::invoke, (void*) data, &args_tuple);
+            else
+                return invoker(func_invoke_op::invoke, (void*) data, &args_tuple).ret;
+        }
+
+        operator bool() const { return invoker != nullptr; }
+
+#if __cpp_rtti
+        [[nodiscard]] const type_info& target_type() const noexcept
+        {
+            return *static_cast<const type_info*>(manage(nullptr, nullptr, func_storage_op::st_get_type_info));
+        }
+        template<typename Callable>
+        [[nodiscard]] const Callable* target() const noexcept
+        {
+            using callable_t = Callable;
+            if(typeid(callable_t) != target_type()) return nullptr;
+            if constexpr (sizeof(callable_t) <= inline_storage_size)
+            {
+                using inline_functor_t = callable_t;
+                return static_cast<const inline_functor_t*>(data);
+            }
+            else
+            {
+                using inline_functor_t = functor_box_wrapper<callable_t, Ret, Args...>;
+                return static_cast<const inline_functor_t*>(data)->get();
+            }
+        }
+#endif
+    };
+}
+
 namespace auto_delegate
 {
-    using details::function;
+    using function_v1::function;
 }
