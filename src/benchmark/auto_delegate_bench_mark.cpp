@@ -108,16 +108,16 @@ struct C
 };
 
 #ifdef NDEBUG
-static constexpr size_t class_count = 1 << 5;
+static constexpr size_t class_count = 1 << 6;
 #else
 static constexpr size_t class_count = 1 << 2;
 #endif
-static constexpr size_t object_count = 1 << 12;
+static constexpr size_t object_count = 1 << 6;
 static constexpr size_t per_class_count = object_count / class_count;
 
 const auto min_warm_up = 1 << 0;
 #ifdef NDEBUG
-const uint64_t invoke_count = 1 << 12;
+const uint64_t invoke_count = 1 << 20;
 #else
 const uint64_t invoke_count = 1 << 2;
 #endif
@@ -428,34 +428,6 @@ static void BM_Virtual_FunctionPointer(benchmark::State& state)
 //BENCHMARK(BM_Virtual_FunctionPointer)BENCHMARK_ARGS;
 
 template<size_t>
-static void BM_NoiseTest(benchmark::State& state)
-{
-    std::vector<std::function<void(ARG_LIST)>> funcs;
-    funcs.reserve(object_count);
-
-    ForEachObject([&]<size_t I>(auto&& o, index_tag<I>)
-                  {
-                      funcs.emplace_back([o](ARG_LIST)
-                                         {
-                                             o->function(ARG_LIST_FORWARD);
-                                         });
-                  });
-
-    for (auto _: state)
-    {
-        for (auto& f: funcs)
-        {
-            f(INVOKE_PARAMS);
-        }
-    }
-}
-BENCHMARK(BM_NoiseTest<0>)BENCHMARK_ARGS;
-BENCHMARK(BM_NoiseTest<1>)BENCHMARK_ARGS;
-BENCHMARK(BM_NoiseTest<2>)BENCHMARK_ARGS;
-BENCHMARK(BM_NoiseTest<3>)BENCHMARK_ARGS;
-
-
-
 static void BM_StdFunction(benchmark::State& state)
 {
     std::vector<std::function<void(ARG_LIST)>> funcs;
@@ -479,9 +451,10 @@ static void BM_StdFunction(benchmark::State& state)
 }
 
 template<size_t>
-static void BM_MyFunction(benchmark::State& state)
+static void BM_FunctionV1(benchmark::State& state)
 {
-    std::vector<function<void(ARG_LIST), 16>> funcs;
+    static constexpr size_t SOB = sizeof(std::function<void(ARG_LIST)>) - 16;
+    std::vector<function<void(ARG_LIST), SOB>> funcs;
     funcs.reserve(object_count);
 
     ForEachObject([&]<size_t I>(auto&& o, index_tag<I>)
@@ -504,7 +477,8 @@ static void BM_MyFunction(benchmark::State& state)
 template<size_t>
 static void BM_FunctionV2(benchmark::State& state)
 {
-    std::vector<function_v2::function<void(ARG_LIST), 16>> funcs;
+    static constexpr size_t SOB = sizeof(std::function<void(ARG_LIST)>) - 16;
+    std::vector<function_v2::function<void(ARG_LIST), SOB>> funcs;
     funcs.reserve(object_count);
 
     ForEachObject([&]<size_t I>(auto&& o, index_tag<I>)
@@ -524,10 +498,15 @@ static void BM_FunctionV2(benchmark::State& state)
     }
 }
 
-BENCHMARK(BM_MyFunction<0>)BENCHMARK_ARGS;
-BENCHMARK(BM_MyFunction<1>)BENCHMARK_ARGS;
-BENCHMARK(BM_MyFunction<2>)BENCHMARK_ARGS;
-BENCHMARK(BM_MyFunction<3>)BENCHMARK_ARGS;
+BENCHMARK(BM_StdFunction<0>)BENCHMARK_ARGS;
+BENCHMARK(BM_StdFunction<1>)BENCHMARK_ARGS;
+BENCHMARK(BM_StdFunction<2>)BENCHMARK_ARGS;
+BENCHMARK(BM_StdFunction<3>)BENCHMARK_ARGS;
+
+BENCHMARK(BM_FunctionV1<0>)BENCHMARK_ARGS;
+BENCHMARK(BM_FunctionV1<1>)BENCHMARK_ARGS;
+BENCHMARK(BM_FunctionV1<2>)BENCHMARK_ARGS;
+BENCHMARK(BM_FunctionV1<3>)BENCHMARK_ARGS;
 
 
 BENCHMARK(BM_FunctionV2<0>)BENCHMARK_ARGS;
@@ -537,7 +516,6 @@ BENCHMARK(BM_FunctionV2<3>)BENCHMARK_ARGS;
 
 
 
-BENCHMARK(BM_StdFunction)BENCHMARK_ARGS;
 
 
 

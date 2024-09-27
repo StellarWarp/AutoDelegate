@@ -72,7 +72,7 @@ TEST(function, test_function)
 
     struct buffer_1_t
     {
-        uint64_t arr[7] = {1, 2, 3, 4, 5, 6, 7};
+        uint64_t arr[6] = {1, 2, 3, 4, 5, 6};
     }b1;
     double exam_sum_1 = std::accumulate(std::begin(b1.arr), std::end(b1.arr), 0.0);
     function<uint64_t(uint64_t)> f4 = [=](uint64_t a)
@@ -83,7 +83,7 @@ TEST(function, test_function)
 
     struct buffer_2_t
     {
-        uint64_t arr[6] = {1, 2, 3, 4, 5, 6};
+        uint64_t arr[7] = {1, 2, 3, 4, 5, 6, 7};
     }b2;
     double exam_sum_2 = std::accumulate(std::begin(b2.arr), std::end(b2.arr), 0.0);
     f4 = [=](uint64_t a)
@@ -91,6 +91,8 @@ TEST(function, test_function)
         return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a);
     };
     ASSERT_EQ(f4(123), exam_sum_2 + 123);
+
+
 
     auto& target_type = f4.target_type();
 
@@ -101,6 +103,11 @@ TEST(function, test_function)
     };
     ASSERT_EQ(f5(123), exam_sum_1 + 123);
 
+    f5.swap(f4);
+
+    ASSERT_EQ(f4(123), exam_sum_1 + 123);
+    ASSERT_EQ(f5(123), exam_sum_2 + 123);
+
     struct buffer_12_t
     {
         uint64_t arr[6] = {1, 2, 3, 4, 5, 6};
@@ -110,6 +117,7 @@ TEST(function, test_function)
         return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a);
     };
     ASSERT_EQ(f4(123), exam_sum_2 + 123);
+
 }
 
 template<int IDENT>
@@ -246,11 +254,13 @@ TEST(function, test_function_validate)
     };
     ASSERT_EQ(f4(123), exam_sum_2 + 123);
 
+    static bool validate_res = true;
+
     struct callable1
     {
         bool validate(function_validate_tag) const
         {
-            return true;
+            return validate_res;
         }
 
         int operator()(int a, int b)
@@ -264,4 +274,10 @@ TEST(function, test_function_validate)
     function<int(int, int)> f6 = c1;
     ASSERT_EQ(f6.validate(), true);
     ASSERT_EQ(f6(1, 2), 3);
+
+
+    validate_res = false;
+    ASSERT_EQ(f6.validate(), false);
+    ASSERT_EQ(f6.try_invoke(1,2).has_value(), false);
+
 }
