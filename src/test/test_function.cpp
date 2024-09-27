@@ -1,4 +1,4 @@
-
+#include <array>
 #include <gtest/gtest.h>
 #include <numeric>
 #include "../delegate/function.h"
@@ -28,6 +28,54 @@ private:
 };
 #endif
 
+
+namespace test_move
+{
+    struct A {
+        A() = default;
+        A(const A&) {
+            std::cout << "copy A" << std::endl;
+        }
+        A(A&&) {
+            std::cout << "move A" << std::endl;
+        }
+    };
+
+
+    struct B {
+        B() = default;
+        B(const B&) {
+            std::cout << "copy B" << std::endl;
+        }
+        B(B&&) {
+            std::cout << "move B" << std::endl;
+        }
+    };
+
+    template<int Size>
+    struct F {
+        std::array<char, Size> padding;
+        B operator()(A) { return {}; }
+    };
+
+    void test(auto&& f) {
+        f(A{});
+        std::cout << "----" << std::endl;
+    }
+}
+
+TEST(function, test_function_param_move)
+{
+    using namespace test_move;
+
+    test(auto_delegate::function<B(A)>{F<0>{}});
+    test(auto_delegate::function<B(A)>{F<1>{}});
+    test(auto_delegate::function<B(A)>{F<2>{}});
+    test(auto_delegate::function<B(A)>{F<3>{}});
+    test(auto_delegate::function<B(A)>{F<256>{}});
+    test(auto_delegate::function<B(A)>{F<4>{}});
+    test(auto_delegate::function<B(A)>{F<5>{}});
+}
 
 TEST(function, test_function)
 {

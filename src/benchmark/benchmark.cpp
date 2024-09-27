@@ -13,7 +13,7 @@ int main(int argc, char** argv)
 {
     #ifdef _WIN32
     SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_TIME_CRITICAL);
-    SetThreadAffinityMask(GetCurrentThread(), (1 << 0));
+    SetThreadAffinityMask(GetCurrentThread(), (1 << 2));
     #endif
 
 #ifdef NDEBUG

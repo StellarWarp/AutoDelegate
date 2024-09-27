@@ -108,11 +108,11 @@ struct C
 };
 
 #ifdef NDEBUG
-static constexpr size_t class_count = 1 << 6;
+static constexpr size_t class_count = 1 << 7;
 #else
 static constexpr size_t class_count = 1 << 2;
 #endif
-static constexpr size_t object_count = 1 << 6;
+static constexpr size_t object_count = 1 << 7;
 static constexpr size_t per_class_count = object_count / class_count;
 
 const auto min_warm_up = 1 << 0;
@@ -122,7 +122,7 @@ const uint64_t invoke_count = 1 << 20;
 const uint64_t invoke_count = 1 << 2;
 #endif
 
-#define BENCHMARK_ARGS ->Iterations(invoke_count)->MeasureProcessCPUTime()->Unit(benchmark::kMillisecond)
+#define BENCHMARK_ARGS ->Iterations(invoke_count)
 
 
 template<auto>
