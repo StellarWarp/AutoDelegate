@@ -103,8 +103,8 @@ namespace auto_delegate::function_v1
         invoker_t invoker;
         manager_t manager;
         static constexpr size_t inline_storage_size = sizeof(data);
-        static constexpr uintptr_t pointer_mask = ~uintptr_t(1);
-        static constexpr uintptr_t non_trivial_bit_mask = 1;
+        static constexpr uintptr_t non_trivial_bit_mask = uintptr_t(1) << (sizeof(uintptr_t)*8-1);
+        static constexpr uintptr_t pointer_mask = ~non_trivial_bit_mask;
 
         [[nodiscard]] bool non_trivial() const
         {
@@ -448,8 +448,8 @@ namespace auto_delegate::function_v2
         void* invoker;
         manager_t manager;
         static constexpr size_t inline_storage_size = sizeof(data);
-        static constexpr uintptr_t non_trivial_bit_mask = 1 << 0;
-        static constexpr uintptr_t validator_bit_mask = 1 << 1;
+        static constexpr uintptr_t non_trivial_bit_mask = uintptr_t(1) << (sizeof (uintptr_t) * 8 - 1);
+        static constexpr uintptr_t validator_bit_mask = non_trivial_bit_mask >> 1;
         static constexpr uintptr_t tag_mask = non_trivial_bit_mask | validator_bit_mask;
         static constexpr uintptr_t pointer_mask = ~(tag_mask);
 
