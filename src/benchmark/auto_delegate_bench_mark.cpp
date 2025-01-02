@@ -108,7 +108,7 @@ struct C
 };
 
 #ifdef NDEBUG
-static constexpr size_t class_count = 1 << 7;
+static constexpr size_t class_count = 1 << 4;
 #else
 static constexpr size_t class_count = 1 << 2;
 #endif
