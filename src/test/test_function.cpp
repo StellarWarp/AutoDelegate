@@ -2,28 +2,31 @@
 #include <gtest/gtest.h>
 #include <numeric>
 #include "../delegate/function.h"
+#include "lifetime_test_util.h"
 
 #if defined _WIN32 || defined_WIN64
 
 #include <crtdbg.h>
 
-class MemoryLeakDetector {
+class MemoryLeakDetector
+{
 public:
-    MemoryLeakDetector() {
-        _CrtMemCheckpoint(&memState_);
-    }
+    MemoryLeakDetector() { _CrtMemCheckpoint(&memState_); }
 
-    ~MemoryLeakDetector() {
+    ~MemoryLeakDetector()
+    {
         _CrtMemState stateNow, stateDiff;
         _CrtMemCheckpoint(&stateNow);
         int diffResult = _CrtMemDifference(&stateDiff, &memState_, &stateNow);
-        if (diffResult)
-            reportFailure(stateDiff.lSizes[1]);
+        if (diffResult) reportFailure(stateDiff.lSizes[1]);
     }
+
 private:
-    void reportFailure(unsigned int unfreedBytes) {
+    void reportFailure(unsigned int unfreedBytes)
+    {
         FAIL() << "Memory leak of " << unfreedBytes << " byte(s) detected.";
     }
+
     _CrtMemState memState_;
 };
 #endif
@@ -31,34 +34,30 @@ private:
 
 namespace test_move
 {
-    struct A {
+    struct A
+    {
         A() = default;
-        A(const A&) {
-            std::cout << "copy A" << std::endl;
-        }
-        A(A&&) {
-            std::cout << "move A" << std::endl;
-        }
+        A(const A&) { std::cout << "copy A" << std::endl; }
+        A(A&&) { std::cout << "move A" << std::endl; }
     };
 
 
-    struct B {
+    struct B
+    {
         B() = default;
-        B(const B&) {
-            std::cout << "copy B" << std::endl;
-        }
-        B(B&&) {
-            std::cout << "move B" << std::endl;
-        }
+        B(const B&) { std::cout << "copy B" << std::endl; }
+        B(B&&) { std::cout << "move B" << std::endl; }
     };
 
     template<int Size>
-    struct F {
+    struct F
+    {
         std::array<char, Size> padding;
         B operator()(A) { return {}; }
     };
 
-    void test(auto&& f) {
+    void test(auto&& f)
+    {
         f(A{});
         std::cout << "----" << std::endl;
     }
@@ -79,20 +78,20 @@ TEST(function, test_function_param_move)
 
 TEST(function, test_function)
 {
-    #if defined _WIN32 || defined_WIN64
+#if defined _WIN32 || defined_WIN64
     MemoryLeakDetector memoryLeakDetector;
-    #endif
+#endif
     using namespace auto_delegate;
 
 
-    function<int(int,int)> empty_f;
+    function<int(int, int)> empty_f;
 
     ASSERT_FALSE(empty_f);
 
-    function f0 = []{ return 114514; };
+    function f0 = [] { return 114514; };
     ASSERT_EQ(f0(), 114514);
 
-    function<int(int,int)> f = [](int a, int b) { return a + b; };
+    function<int(int, int)> f = [](int a, int b) { return a + b; };
     ASSERT_EQ(f(1, 2), 3);
 
     f = [](int a, int b) { return a - b; };
@@ -102,9 +101,9 @@ TEST(function, test_function)
     {
         int a;
         int b;
-    }capture(3, 4);
+    } capture(3, 4);
 
-    f = [=] (int a, int b) { return a + b + capture.a + capture.b; };
+    f = [=](int a, int b) { return a + b + capture.a + capture.b; };
     ASSERT_EQ(f(1, 2), 10);
 
     //copy
@@ -121,34 +120,24 @@ TEST(function, test_function)
     struct buffer_1_t
     {
         uint64_t arr[6] = {1, 2, 3, 4, 5, 6};
-    }b1;
+    } b1;
     double exam_sum_1 = std::accumulate(std::begin(b1.arr), std::end(b1.arr), 0.0);
-    function<uint64_t(uint64_t)> f4 = [=](uint64_t a)
-    {
-        return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a);
-    };
+    function<uint64_t(uint64_t)> f4 = [=](uint64_t a) { return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a); };
     ASSERT_EQ(f4(123), exam_sum_1 + 123);
 
     struct buffer_2_t
     {
         uint64_t arr[7] = {1, 2, 3, 4, 5, 6, 7};
-    }b2;
+    } b2;
     double exam_sum_2 = std::accumulate(std::begin(b2.arr), std::end(b2.arr), 0.0);
-    f4 = [=](uint64_t a)
-    {
-        return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a);
-    };
+    f4 = [=](uint64_t a) { return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a); };
     ASSERT_EQ(f4(123), exam_sum_2 + 123);
-
 
 
     auto& target_type = f4.target_type();
 
 
-    function<uint64_t(uint64_t)> f5 = [=] (uint64_t a) mutable
-    {
-        return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a);
-    };
+    function<uint64_t(uint64_t)> f5 = [=](uint64_t a) mutable { return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a); };
     ASSERT_EQ(f5(123), exam_sum_1 + 123);
 
     f5.swap(f4);
@@ -159,38 +148,23 @@ TEST(function, test_function)
     struct buffer_12_t
     {
         uint64_t arr[6] = {1, 2, 3, 4, 5, 6};
-    }b12;
-    f4 = [=](uint64_t a) mutable
-    {
-        return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a);
-    };
+    } b12;
+    f4 = [=](uint64_t a) mutable { return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a); };
     ASSERT_EQ(f4(123), exam_sum_2 + 123);
 
 }
 
 template<int IDENT>
-int tmp_func(int a, int b)
-{
-    return a + b + IDENT;
-}
+int tmp_func(int a, int b) { return a + b + IDENT; }
 
 template<typename T>
-constexpr void* move_constructor(void* dest, void* src)
-{
-    return (T*) new(dest) T(std::move(*(T*) src));
-}
+constexpr void* move_constructor(void* dest, void* src) { return (T*) new(dest) T(std::move(*(T*) src)); }
 
 template<typename T>
-constexpr void* copy_constructor(void* dest, const void* src)
-{
-    return (T*) new(dest) T(*(T*) src);
-}
+constexpr void* copy_constructor(void* dest, const void* src) { return (T*) new(dest) T(*(T*) src); }
 
 template<typename T>
-constexpr void destructor(void* addr)
-{
-    ((T*) addr)->~T();
-}
+constexpr void destructor(void* addr) { ((T*) addr)->~T(); }
 
 TEST(function, test_tag_function_ptr)
 {
@@ -228,14 +202,14 @@ TEST(function, test_function_validate)
     using namespace auto_delegate::function_v2;
 
 
-    function<int(int,int)> empty_f;
+    function<int(int, int)> empty_f;
 
     ASSERT_FALSE(empty_f);
 
-    function f0 = []{ return 114514; };
+    function f0 = [] { return 114514; };
     ASSERT_EQ(f0(), 114514);
 
-    function<int(int,int)> f = [](int a, int b) { return a + b; };
+    function<int(int, int)> f = [](int a, int b) { return a + b; };
     ASSERT_EQ(f(1, 2), 3);
 
     f = [](int a, int b) { return a - b; };
@@ -245,9 +219,9 @@ TEST(function, test_function_validate)
     {
         int a;
         int b;
-    }capture(3, 4);
+    } capture(3, 4);
 
-    f = [=] (int a, int b) { return a + b + capture.a + capture.b; };
+    f = [=](int a, int b) { return a + b + capture.a + capture.b; };
     ASSERT_EQ(f(1, 2), 10);
 
     //copy
@@ -264,57 +238,39 @@ TEST(function, test_function_validate)
     struct buffer_1_t
     {
         uint64_t arr[7] = {1, 2, 3, 4, 5, 6, 7};
-    }b1;
+    } b1;
     double exam_sum_1 = std::accumulate(std::begin(b1.arr), std::end(b1.arr), 0.0);
-    function<uint64_t(uint64_t)> f4 = [=](uint64_t a)
-    {
-        return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a);
-    };
+    function<uint64_t(uint64_t)> f4 = [=](uint64_t a) { return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a); };
     ASSERT_EQ(f4(123), exam_sum_1 + 123);
 
     struct buffer_2_t
     {
         uint64_t arr[6] = {1, 2, 3, 4, 5, 6};
-    }b2;
+    } b2;
     double exam_sum_2 = std::accumulate(std::begin(b2.arr), std::end(b2.arr), 0.0);
-    f4 = [=](uint64_t a)
-    {
-        return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a);
-    };
+    f4 = [=](uint64_t a) { return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a); };
     ASSERT_EQ(f4(123), exam_sum_2 + 123);
 
     auto& target_type = f4.target_type();
 
 
-    function<uint64_t(uint64_t)> f5 = [=] (uint64_t a) mutable
-    {
-        return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a);
-    };
+    function<uint64_t(uint64_t)> f5 = [=](uint64_t a) mutable { return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a); };
     ASSERT_EQ(f5(123), exam_sum_1 + 123);
 
     struct buffer_12_t
     {
         uint64_t arr[6] = {1, 2, 3, 4, 5, 6};
-    }b12;
-    f4 = [=](uint64_t a) mutable
-    {
-        return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a);
-    };
+    } b12;
+    f4 = [=](uint64_t a) mutable { return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a); };
     ASSERT_EQ(f4(123), exam_sum_2 + 123);
 
     static bool validate_res = true;
 
     struct callable1
     {
-        bool validate(function_validate_tag) const
-        {
-            return validate_res;
-        }
+        bool validate(function_validate_tag) const { return validate_res; }
 
-        int operator()(int a, int b)
-        {
-            return a + b;
-        }
+        int operator()(int a, int b) { return a + b; }
     };
 
     callable1 c1;
@@ -327,5 +283,99 @@ TEST(function, test_function_validate)
     validate_res = false;
     ASSERT_EQ(f6.validate(), false);
     ASSERT_EQ(f6.try_invoke(1,2).has_value(), false);
+
+}
+
+using test_lifetime1 = managed_object_tester<[] {}>;
+using test_lifetime2 = managed_object_tester<[] {}>;
+
+
+TEST(function, test_function_object_lifetime)
+{
+#if defined _WIN32 || defined_WIN64
+    MemoryLeakDetector memoryLeakDetector;
+#endif
+    using namespace auto_delegate;
+
+
+    function<int(int, int)> empty_f;
+
+    ASSERT_FALSE(empty_f);
+
+    function f0 = [] { return 114514; };
+    ASSERT_EQ(f0(), 114514);
+
+    function<int(int, int)> f = [](int a, int b) { return a + b; };
+    ASSERT_EQ(f(1, 2), 3);
+
+    f = [](int a, int b) { return a - b; };
+    ASSERT_EQ(f(3, 2), 1);
+
+    struct small_buffer : test_lifetime1
+    {
+        int a;
+        int b;
+        small_buffer(int a, int b) : a(a), b(b) {}
+    };
+    {
+        small_buffer capture(3, 4);
+
+        f = [=](int a, int b) { return a + b + capture.a + capture.b; };
+        ASSERT_EQ(f(1, 2), 10);
+
+        //copy
+        auto f2 = f;
+        ASSERT_EQ(f2(1, 2), 10);
+
+        //move
+        auto f3 = std::move(f);
+        ASSERT_EQ(f3(1, 2), 10);
+    }
+
+    ASSERT_FALSE(f);
+    ASSERT_EQ(small_buffer::object_counter, 0);
+
+    struct buffer_2_t : test_lifetime2
+    {
+        uint64_t arr[7] = {1, 2, 3, 4, 5, 6, 7};
+    };
+    {
+        struct buffer_1_t
+        {
+            uint64_t arr[6] = {1, 2, 3, 4, 5, 6};
+        } b1;
+        double exam_sum_1 = std::accumulate(std::begin(b1.arr), std::end(b1.arr), 0.0);
+        function<uint64_t(uint64_t)> f4 = [=](uint64_t a) { return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a); };
+        ASSERT_EQ(f4(123), exam_sum_1 + 123);
+
+
+        buffer_2_t b2;
+        double exam_sum_2 = std::accumulate(std::begin(b2.arr), std::end(b2.arr), 0.0);
+        f4 = [=](uint64_t a) { return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a); };
+        ASSERT_EQ(f4(123), exam_sum_2 + 123);
+
+
+        auto& target_type = f4.target_type();
+
+
+        function<uint64_t(uint64_t)> f5 = [=](uint64_t a) mutable { return std::accumulate(std::begin(b1.arr), std::end(b1.arr), a); };
+        ASSERT_EQ(f5(123), exam_sum_1 + 123);
+
+        f5.swap(f4);
+
+        ASSERT_EQ(f4(123), exam_sum_1 + 123);
+        ASSERT_EQ(f5(123), exam_sum_2 + 123);
+
+        struct buffer_12_t
+        {
+            uint64_t arr[6] = {1, 2, 3, 4, 5, 6};
+        } b12;
+        f4 = [=](uint64_t a) mutable { return std::accumulate(std::begin(b2.arr), std::end(b2.arr), a); };
+        ASSERT_EQ(f4(123), exam_sum_2 + 123);
+    }
+
+    ASSERT_EQ(buffer_2_t::object_counter, 0);
+    ASSERT_EQ(small_buffer::object_counter, 0);
+
 
 }

@@ -16,7 +16,7 @@ namespace auto_delegate::function_v1
         enum class func_storage_op
         {
             st_copy,
-            st_move,
+            st_move_delete,
             st_delete,
             st_get_type_info
         };
@@ -39,8 +39,9 @@ namespace auto_delegate::function_v1
                     case func_storage_op::st_copy:
                         ::new(self) T((const T&) other_);
                         break;
-                    case func_storage_op::st_move:
+                    case func_storage_op::st_move_delete:
                         ::new(self) T(std::move(other_));
+                        other_.~T();
                         break;
                     case func_storage_op::st_delete:
                         self_.~T();
@@ -162,7 +163,7 @@ namespace auto_delegate::function_v1
 
         function(function&& other) noexcept: invoker(other.invoker), manager(other.manager)
         {
-            if (non_trivial()) manage(data, other.data, internal::func_storage_op::st_move);
+            if (non_trivial()) manage(data, other.data, internal::func_storage_op::st_move_delete);
             else std::memcpy(data, other.data, sizeof(data));
             other.invoker = nullptr;
             other.manager = nullptr;
@@ -241,7 +242,7 @@ namespace auto_delegate::function_v2
         enum class func_storage_op
         {
             st_copy,
-            st_move,
+            st_move_delete,
             st_delete,
             st_get_type_info
         };
@@ -378,8 +379,9 @@ namespace auto_delegate::function_v2
                     case func_storage_op::st_copy:
                         new(self) T((const T&) other_);
                         break;
-                    case func_storage_op::st_move:
+                    case func_storage_op::st_move_delete:
                         new(self) T(std::move(other_));
+                        other_.~T();
                         break;
                     case func_storage_op::st_delete:
                         self_.~T();
@@ -528,7 +530,7 @@ namespace auto_delegate::function_v2
 
         function(function&& other) noexcept: invoker(other.invoker), manager(other.manager)
         {
-            if (non_trivial()) manage(data, other.data, internal::func_storage_op::st_move);
+            if (non_trivial()) manage(data, other.data, internal::func_storage_op::st_move_delete);
             else std::memcpy(data, other.data, sizeof(data));
             other.invoker = nullptr;
             other.manager = nullptr;
