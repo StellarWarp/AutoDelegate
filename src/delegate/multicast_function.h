@@ -40,7 +40,8 @@ namespace auto_delegate
         struct object_container : public std::vector<function_t>
         {
             using super = std::vector<function_t>;
-            super::iterator iteraion_end;
+            using iterator = typename super::iterator;
+            iterator iteraion_end;
 #ifndef NDEBUG
             bool in_iteration = false;
 #endif
@@ -93,7 +94,7 @@ namespace auto_delegate
             using super::emplace_back;
             using super::begin;
 
-            const super::iterator& end()
+            const iterator& end()
             {
 #ifndef NDEBUG
                 assert(!in_iteration);
@@ -171,7 +172,7 @@ namespace auto_delegate
             else if constexpr (requires { functor.on_bind(&objects); })
                 return functor.on_bind(&objects);
             else if constexpr (requires { std::decay_t<decltype(functor)>::on_bind; })
-                static_assert(!std::same_as<int, int>, "on_bind is not implemented");
+                static_assert([] { return false; }(), "on_bind is not implemented");
             else
                 return;
         }
