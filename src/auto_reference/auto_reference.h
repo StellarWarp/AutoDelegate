@@ -530,7 +530,7 @@ namespace auto_reference
 
         void clear() { refs.clear(); }
 
-        using pointer_t = AutoRefProtocol::second_object_ptr_t;
+        using pointer_t = typename AutoRefProtocol::second_object_ptr_t;
 
         decltype(auto) bind(const pointer_t& obj)
         {

@@ -29,7 +29,7 @@ namespace auto_delegate
 
     template<typename AutoRefProtocol = generic_ref_protocol,
             typename DelegateHandle = void,
-            typename InverseHandle = delegate_handle_traits<DelegateHandle>::inverse_handle_type
+            typename InverseHandle = typename delegate_handle_traits<DelegateHandle>::inverse_handle_type
     >
     class auto_delegate_container : public array_ref_charger<AutoRefProtocol, std::tuple<void*, InverseHandle>>
     {
@@ -66,7 +66,7 @@ namespace auto_delegate
         }
 
     public:
-        delegate_handle_t bind(const super::pointer_t& obj, void* invoker)
+        delegate_handle_t bind(const typename super::pointer_t& obj, void* invoker)
         {
             assert(obj);
             auto& [fn, handle_ref] = super::bind(obj);
@@ -91,7 +91,7 @@ namespace auto_delegate
             super::notify_reference_removed(h);
         }
 
-        void unbind(const super::pointer_t& obj) requires (not enable_delegate_handle)
+        void unbind(const typename super::pointer_t& obj) requires (not enable_delegate_handle)
         {
             assert(obj);
             super::unbind(obj);
