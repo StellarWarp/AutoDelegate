@@ -1,5 +1,4 @@
 #include <iostream>
-#include <any>
 
 #include "../delegate/multicast_delegate.h"
 #include "../delegate/multicast_function.h"

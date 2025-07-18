@@ -18,7 +18,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="[markdown] update README.md" />
+    <list default="true" id="1c50c572-0cf9-452a-9cdb-7cdf85a1e89f" name="Changes" comment="[fix] fix missing destructor call during function move">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -97,6 +99,7 @@
     <setting file="file://$PROJECT_DIR$/src/delegate/multicast_delegate.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/delegate/multicast_function.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/reference_safe_delegate/reference_safe_delegate.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/src/test/lifetime_test_util.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/test/test_auto_multicast.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/test/test_function.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/src/test/test_multicast_function.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -117,37 +120,38 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "C/C++ File.test.cpp.executor": "Run",
-    "Custom Build Application.benchmark | debug.executor": "Debug",
-    "Custom Build Application.benchmark | release.executor": "Run",
-    "Custom Build Application.test | debug.executor": "Run",
-    "Custom Build Application.test | release.executor": "Run",
-    "Custom Build Application.xmake | debug.executor": "Run",
-    "Custom Build Application.xmake | release.executor": "Run",
-    "Python.benchmark_display.executor": "Run",
-    "Python.gitsubtree_util.executor": "Debug",
-    "RunOnceActivity.RadMigrateCodeStyle": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "RunOnceActivity.readMode.enableVisualFormatting": "true",
-    "cf.advertisement.text.has.clang-format": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.codeium.enabled": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/Estelle/source/repos/AutoDelegate",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CLionExternalConfigurable",
-    "structure.view.defaults.are.configured": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;C/C++ File.test.cpp.executor&quot;: &quot;Run&quot;,
+    &quot;Custom Build Application.benchmark | debug.executor&quot;: &quot;Debug&quot;,
+    &quot;Custom Build Application.benchmark | release.executor&quot;: &quot;Run&quot;,
+    &quot;Custom Build Application.test | debug.executor&quot;: &quot;Debug&quot;,
+    &quot;Custom Build Application.test | release.executor&quot;: &quot;Run&quot;,
+    &quot;Custom Build Application.xmake | debug.executor&quot;: &quot;Run&quot;,
+    &quot;Custom Build Application.xmake | release.executor&quot;: &quot;Run&quot;,
+    &quot;Python.benchmark_display.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gitsubtree_util.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.RadMigrateCodeStyle&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.readMode.enableVisualFormatting&quot;: &quot;true&quot;,
+    &quot;cf.advertisement.text.has.clang-format&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Estelle/source/repos/AutoDelegate&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;structure.view.defaults.are.configured&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Estelle\source\repos\AutoDelegate" />
@@ -160,7 +164,7 @@
       <recent name="C:\Users\Estelle\source\repos\Delegate\src\delegate" />
     </key>
   </component>
-  <component name="RunManager" selected="XMake.Sample">
+  <component name="RunManager" selected="Custom Build Application.test | debug">
     <configuration name="benchmark | debug" type="CLionExternalRunConfiguration" factoryName="Application" PROGRAM_PARAMS="--benchmark_repetitions=10" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="AutoDelegate" TARGET_NAME="xmake" CONFIG_NAME="xmake" RUN_PATH="$PROJECT_DIR$/build/windows/x64/debug/DelegateBenchmark.exe">
       <envs>
         <env name="CONSOLE_WIDTH" value=" 200" />
@@ -240,11 +244,6 @@
       <method v="2">
         <option name="ToolBeforeRunTask" enabled="true" actionId="Tool_xmake clion_xmake setting release" />
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="benchmark_display" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -424,6 +423,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Benchmark" type="XMakeRunConfiguration" factoryName="Start and Debug" show_console_on_std_err="false" show_console_on_std_out="false">
+      <target name="runTarget" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
@@ -439,6 +439,7 @@
       <target name="runTarget" value="DelegateBenchmark" />
       <platform name="runPlatform" value="windows" />
       <architecture name="runArchitecture" value="x64" />
+      <toolchain name="runToolchain" value="default" />
       <mode name="runMode" value="debug" />
       <arguments name="runArguments" value="--benchmark_repetitions=5" />
       <workingDirectory name="runWorkingDir" value="C:\Users\Estelle\source\repos\AutoDelegate" />
@@ -450,6 +451,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Sample" type="XMakeRunConfiguration" factoryName="Start and Debug" show_console_on_std_err="false" show_console_on_std_out="false">
+      <target name="runTarget" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
@@ -465,6 +467,7 @@
       <target name="runTarget" value="DelegateSample" />
       <platform name="runPlatform" value="windows" />
       <architecture name="runArchitecture" value="x64" />
+      <toolchain name="runToolchain" value="default" />
       <mode name="runMode" value="debug" />
       <arguments name="runArguments" value="" />
       <workingDirectory name="runWorkingDir" value="C:\Users\Estelle\source\repos\AutoDelegate" />
@@ -476,6 +479,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Test" type="XMakeRunConfiguration" factoryName="Start and Debug" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <target name="runTarget" />
       <option name="allowRunningInParallel" value="false" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
@@ -491,7 +495,8 @@
       <target name="runTarget" value="DelegateTest" />
       <platform name="runPlatform" value="windows" />
       <architecture name="runArchitecture" value="x64" />
-      <mode name="runMode" value="debug" />
+      <toolchain name="runToolchain" value="default" />
+      <mode name="runMode" value="release" />
       <arguments name="runArguments" value="--gtest_break_on_failure" />
       <workingDirectory name="runWorkingDir" value="C:\Users\Estelle\source\repos\AutoDelegate" />
       <buildDirectory name="buildDirectory" value="" />
@@ -502,6 +507,10 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Custom Build Application.benchmark | debug" />
+      <item itemvalue="Custom Build Application.benchmark | release" />
+      <item itemvalue="Custom Build Application.test | debug" />
+      <item itemvalue="Custom Build Application.test | release" />
       <item itemvalue="Python.gitsubtree_util" />
       <item itemvalue="Python.benchmark_display" />
       <item itemvalue="XMake.Benchmark" />
@@ -574,6 +583,10 @@
       <workItem from="1727432593623" duration="3938000" />
       <workItem from="1731379532317" duration="263000" />
       <workItem from="1735820117356" duration="4072000" />
+      <workItem from="1735979299436" duration="4747000" />
+      <workItem from="1752754146828" duration="519000" />
+      <workItem from="1752755658459" duration="166000" />
+      <workItem from="1752755864057" duration="526000" />
     </task>
     <task id="LOCAL-00001" summary="benchmark">
       <option name="closed" value="true" />
@@ -775,7 +788,23 @@
       <option name="project" value="LOCAL" />
       <updated>1735823962153</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="[project]">
+      <option name="closed" value="true" />
+      <created>1735981212497</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1735981212497</updated>
+    </task>
+    <task id="LOCAL-00027" summary="[fix] fix missing destructor call during function move">
+      <option name="closed" value="true" />
+      <created>1735981331637</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1735981331637</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -841,18 +870,9 @@
     <MESSAGE value="[project] project file" />
     <MESSAGE value="[benchmark]" />
     <MESSAGE value="[markdown] update README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="[markdown] update README.md" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/test/test_function.cpp</url>
-          <line>91</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="[project]" />
+    <MESSAGE value="[fix] fix missing destructor call during function move" />
+    <option name="LAST_COMMIT_MESSAGE" value="[fix] fix missing destructor call during function move" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
